@@ -95,7 +95,11 @@ class Node(collections.MutableMapping):
         return iter(self._struct)
 
     def __len__(self):
-        return len(self._struct)
+        """ Tree Height from this Node """
+        if not (self.left or self.right):
+            return 1
+        ht = lambda node: 1 + len(node) if node else 0
+        return max(ht(self.left), ht(self.right))
 
     def find(self, code_seq):
         step = first(code_seq)
