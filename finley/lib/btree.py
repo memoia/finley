@@ -9,7 +9,11 @@ class Node(collections.MutableMapping):
     def __init__(self, *args, **kwargs):
         self._keys = ('data', 'value', 'left', 'right')
         self._struct = dict((k, None) for k in self._keys)
-        self.update(dict(*args, **kwargs))
+        if args and isinstance(args[0], basestring):
+            kwargs['data'] = args[0]
+            self.update(dict(**kwargs))
+        else:
+            self.update(dict(*args, **kwargs))
 
     @property
     def left(self):
