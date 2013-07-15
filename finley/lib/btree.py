@@ -64,17 +64,16 @@ class Node(collections.MutableMapping):
         del self['data']
 
     def __unicode__(self):
-        return unicode(self.value)
+        return unicode(self.data)
 
     __str__ = __unicode__
 
     def __repr__(self):
-        return unicode('<{0}/{1} "{2}" ({3}, {4})>'.format(
+        return unicode('<{0} {1} ({2} _/ \_ {3})>'.format(
                         self.__class__.__name__,
-                        self.get('value'),
-                        self.get('data'),
-                        self.get('left'),
-                        self.get('right')))
+                        self.data,
+                        self.left,
+                        self.right))
 
     def __getitem__(self, key):
         return self._struct[key]
